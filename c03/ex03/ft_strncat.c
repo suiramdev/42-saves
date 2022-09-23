@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 22:14:28 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/21 20:23:09 by mnouchet         ###   ########.fr       */
+/*   Created: 2022/09/21 20:57:47 by mnouchet          #+#    #+#             */
+/*   Updated: 2022/09/21 20:57:50 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
+	while (dest[i])
 		i++;
+	j = 0;
+	while (j < nb && src[j])
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	dest[i] = '\0';
+	dest[i + j] = '\0';
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 23:02:03 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/18 23:06:58 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:36:59 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ char	*ft_strupcase(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] >= 'a' && str[i] <= 'z')
 			str[i] = str[i] - 'a' + 'A';

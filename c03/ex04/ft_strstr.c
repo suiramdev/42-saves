@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:37:31 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/20 21:31:46 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:08:11 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,3 @@ char	*ft_strstr(char *str, char *to_find)
 	}
 	return (0);
 }
-
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "hello you! How are you?";
-	char to_find[] = "?";
-	
-	printf("%s\n", ft_strstr(str, to_find));
-}
-

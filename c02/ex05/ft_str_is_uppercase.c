@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 16:51:31 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/19 20:52:02 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:37:43 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@ int	ft_str_is_uppercase(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		if (! ((str[i] >= 'A' && str[i] <= 'Z')
-				|| str[i] == ' '))
+		if (str[i] < 'A' || str[i] > 'Z')
 			return (0);
 		i++;
 	}

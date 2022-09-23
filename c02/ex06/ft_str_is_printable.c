@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 16:51:31 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/18 23:00:10 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:37:42 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int	ft_str_is_printable(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] < 32 || str[i] == 127)
 			return (0);
