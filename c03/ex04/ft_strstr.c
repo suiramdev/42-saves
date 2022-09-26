@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:37:31 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/22 21:08:11 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/26 11:22:15 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*ft_strstr(char *str, char *to_find)
 	int	matching;
 	int	i;
 
+	if (to_find[0] == '\0')
+		return (str);
 	str_len = ft_strlen(str);
 	find_len = ft_strlen(to_find);
 	matching = 0;

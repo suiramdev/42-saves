@@ -6,11 +6,12 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:08:19 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/22 21:18:15 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:22:51 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -32,9 +33,9 @@ int	ft_is_base(char *base)
 	{
 		if (base[i] == '+' || base[i] == '-')
 			return (0);
-		while (base[i + j])
+		while (base[j])
 		{
-			if (base[i] == base[i + j])
+			if (base[i] == base[j])
 				return (0);
 			j++;
 		}
@@ -47,10 +48,11 @@ void	ft_putnbr_base(int nbr, char *base)
 {
 	int	base_len;
 
-	base_len = ft_strlen(base);
 	if (!ft_is_base(base))
 		return ;
+	base_len = ft_strlen(base);
 	write(1, &base[(unsigned int)nbr % base_len], 1);
-	if (base_len >= 10)
-		write(1, &base[(unsigned int)nbr % base_len], 1);
+	nbr = nbr / base_len;
+	if ( nbr > 0)
+		ft_putnbr_base(nbr, base);
 }
