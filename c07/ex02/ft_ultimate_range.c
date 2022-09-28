@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 18:27:24 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/27 11:46:04 by mnouchet         ###   ########.fr       */
+/*   Created: 2022/09/28 11:59:06 by mnouchet          #+#    #+#             */
+/*   Updated: 2022/09/28 17:20:36 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
-{
-	int	output;
+#include <stdlib.h>
 
-	if (nb < 0)
+int	ft_ultimate_range(int **range, int min, int max)
+{
+	if (min >= max)
+	{
+		*range = NULL;
 		return (0);
-	output = 1;
-	while (nb > 1)
-		output *= nb--;
-	return (output);
+	}
+	*range = malloc((max - min) * sizeof(int));
+	if (!*range)
+		return (-1);
+	while (min <= max)
+	{
+		*range[max - min] = min;
+		min++;
+	}
+	return (max - min);
 }

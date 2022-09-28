@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 18:27:24 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/27 11:46:04 by mnouchet         ###   ########.fr       */
+/*   Created: 2022/09/28 10:36:44 by mnouchet          #+#    #+#             */
+/*   Updated: 2022/09/28 10:50:49 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
-{
-	int	output;
+#include <stdlib.h>
 
-	if (nb < 0)
-		return (0);
-	output = 1;
-	while (nb > 1)
-		output *= nb--;
-	return (output);
+char	*ft_strdup(char *src)
+{
+	char	*copy;
+	int		i;
+
+	i = 0;
+	while (src[i])
+		i++;
+	copy = malloc(i * sizeof(char));
+	i = 0;
+	while (src[i])
+	{
+		copy[i] = src[i];
+		i++;
+	}
+	return (copy);
 }

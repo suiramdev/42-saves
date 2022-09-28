@@ -6,14 +6,14 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:25:06 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/27 10:33:50 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:12:47 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_find_next_prime(int nb)
 {
 	int	i;
-	
+
 	i = 2;
 	while (i < nb)
 	{
