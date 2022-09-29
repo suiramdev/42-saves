@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:01:53 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/26 13:34:32 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:12:27 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ int	ft_is_base(char *base)
 	return (i > 1);
 }
 
-
 int	ft_atoi_base(char *str, char *base)
 {
 	int	output;
 	int	sign;
 	int	i;
-	int pos;
+	int	pos;
 
 	if (!ft_is_base(base))
 		return (0);
@@ -81,7 +80,7 @@ int	ft_atoi_base(char *str, char *base)
 		pos = ft_find_in_base(str[i], base);
 		if (pos < 0)
 			return (0);
-		output = output * 10 + pos; 
+		output = output * 10 + pos;
 		i++;
 	}
 	return (output * sign);

@@ -6,7 +6,7 @@
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:08:19 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/26 13:22:51 by mnouchet         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:11:47 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	ft_putnbr_base(int nbr, char *base)
 	base_len = ft_strlen(base);
 	write(1, &base[(unsigned int)nbr % base_len], 1);
 	nbr = nbr / base_len;
-	if ( nbr > 0)
+	if (nbr > 0)
 		ft_putnbr_base(nbr, base);
 }
