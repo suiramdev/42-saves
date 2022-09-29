@@ -1,5 +1,7 @@
 for filename in ~/Documents/piscine/*; do
 	cp -r $filename ~/Documents/saves
+done
+for filename in ~/Documents/saves/*; do
 	rm -rf $filename/.git
 done
 cd ~/Documents/saves 
