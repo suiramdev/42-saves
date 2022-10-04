@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 13:01:53 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/10/01 17:46:17 by mnouchet         ###   ########.fr       */
+/*   Created: 2022/10/01 11:29:51 by mnouchet          #+#    #+#             */
+/*   Updated: 2022/10/02 16:12:14 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+int	ft_is_sign(char c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	return (c == '+' || c == '-');
 }
 
-int	ft_is_skipper(char c)
+int	ft_is_space(char c)
 {
-	return (c == '+' || c == '-' || c == '\f'
-		|| c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v' || c == ' ');
+	return (c == '\f' || c == '\n' || c == '\r'
+		|| c == '\t' || c == '\v' || c == ' ');
 }
 
 int	ft_find_in_base(char c, char *base)
@@ -50,7 +44,7 @@ int	ft_is_base(char *base)
 	j = 1;
 	while (base[i])
 	{
-		if (ft_is_skipper(base[i]))
+		if (ft_is_sign(base[i]) || ft_is_space(base[i]))
 			return (0);
 		while (base[j])
 		{
@@ -63,30 +57,15 @@ int	ft_is_base(char *base)
 	return (i > 1);
 }
 
-int	ft_atoi_base(char *str, char *base)
+int	ft_count_digits(int nbr, int base_len)
 {
-	int	output;
-	int	negative;
 	int	i;
-	int	base_len;
 
-	if (!ft_is_base(base))
-		return (0);
-	output = 0;
-	negative = 1;
 	i = 0;
-	while (ft_is_skipper(str[i]))
+	while (nbr > 0)
 	{
-		if (str[i] == '-')
-			negative = -negative;
+		nbr = nbr / base_len;
 		i++;
 	}
-	base_len = ft_strlen(base);
-	while (str[i])
-	{
-		output *= base_len;
-		output += ft_find_in_base(str[i], base);
-		i++;
-	}
-	return (output * negative);
+	return (i);
 }

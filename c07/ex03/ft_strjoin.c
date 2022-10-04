@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 17:21:34 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/09/28 19:07:18 by mnouchet         ###   ########.fr       */
+/*   Created: 2022/10/01 21:57:38 by mnouchet          #+#    #+#             */
+/*   Updated: 2022/10/04 20:10:11 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,53 +22,50 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strstotal(char **strs)
+char	*ft_strcat(char *dest, char *src)
 {
-	int		total;
-	int		i;
-
-	total = 0;
-	i = 0;
-	while (strs[i])
-	{
-		total += ft_strlen(strs[i]);
-		i++;
-	}
-	return (total);
-}
-
-// This is a custom version of strcat, based on our needs.
-int	ft_strcat(char *dest, char *src)
-{
-	int	dest_len;
 	int	i;
+	int	j;
 
-	dest_len = ft_strlen(dest);
 	i = 0;
-	while (src[i])
-	{
-		dest[dest_len + i] = src[i];
+	while (dest[i])
 		i++;
+	j = 0;
+	while (src[j])
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	return (dest_len + i);
+	return (dest);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char	*output;
-	int		i;
+	char				*output;
+	long int			allocsize;
+	int					i;
 
-	output = malloc((ft_strlen(sep) * size + ft_strstotal(strs))
-			* sizeof(char));
-	if (size == 0)
+	if (size <= 0 || !strs)
+	{
+		output = malloc(sizeof(char));
+		output[0] = 0;
 		return (output);
+	}
+	allocsize = ft_strlen(sep) * (size - 1);
 	i = 0;
-	while (strs[i])
+	while (i < size)
+		allocsize += ft_strlen(strs[i++]);
+	output = malloc((allocsize + 1) * sizeof(char));
+	if (!output)
+		return (0);
+	i = 0;
+	while (i < size)
 	{
 		ft_strcat(output, strs[i]);
 		if (i < size - 1)
 			ft_strcat(output, sep);
 		i++;
 	}
+	output[allocsize] = '\0';
 	return (output);
 }
