@@ -5,35 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnouchet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 12:45:56 by mnouchet          #+#    #+#             */
-/*   Updated: 2022/10/05 17:27:21 by mnouchet         ###   ########.fr       */
+/*   Created: 2022/10/05 16:12:47 by mnouchet          #+#    #+#             */
+/*   Updated: 2022/10/05 18:56:53 by mnouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-int	ft_strincludes(char c, char *charset)
+int	ft_strincludes(char c, char *str)
 {
 	int	i;
 
 	i = 0;
-	while (charset[i])
+	while (str[i])
 	{
-		if (c == charset[i])
+		if (c == str[i])
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	ft_allocate_words(char *str, char *charset, char **output)
+char	**ft_allocate_words(char *str, char *charset, char **output)
 {
+	int	i;
 	int	wordcount;
 	int	charcount;
-	int	i;
 
-	wordcount = 0;
 	i = 0;
+	wordcount = 0;
 	while (str[i])
 	{
 		while (ft_strincludes(str[i], charset) && str[i])
@@ -52,18 +53,22 @@ int	ft_allocate_words(char *str, char *charset, char **output)
 			wordcount++;
 		}
 	}
-	return (1);
+	return (output);
 }
 
-// It allocated enough memory to the split's output
+/*
+ * Prepare the splitting by allocating enough memory
+ * This method allocates enough elements in output, and allocate_words()
+ * will allocates its lengths.
+ */
 char	**ft_prepare_split(char *str, char *charset)
 {
 	char	**output;
-	int		wordcount;
 	int		i;
+	int		wordcount;
 
-	wordcount = 0;
 	i = 0;
+	wordcount = 0;
 	while (str[i])
 	{
 		while (ft_strincludes(str[i], charset) && str[i])
@@ -76,20 +81,26 @@ char	**ft_prepare_split(char *str, char *charset)
 		}
 	}
 	output = malloc((wordcount + 1) * sizeof(char *));
+	if (!output)
+		return (0);
 	output[wordcount] = 0;
 	if (!ft_allocate_words(str, charset, output))
 		return (0);
 	return (output);
 }
 
-void	ft_fill_words(char *str, char *charset, char **output)
+char	**ft_split(char *str, char *charset)
 {
+	char	**output;
+	int		i;
 	int		wordcount;
 	int		charcount;
-	int		i;
 
-	wordcount = 0;
+	output = ft_prepare_split(str, charset);
+	if (!output)
+		return (0);
 	i = 0;
+	wordcount = 0;
 	while (str[i])
 	{
 		while (ft_strincludes(str[i], charset) && str[i])
@@ -107,15 +118,25 @@ void	ft_fill_words(char *str, char *charset, char **output)
 			wordcount++;
 		}
 	}
+	return (output);
 }
 
-char	**ft_split(char *str, char *charset)
+int	main(int argc, char **argv)
 {
-	char	**output;
+	char	**split;
+	int		i;
 
-	output = ft_prepare_split(str, charset);
-	if (!output)
+	if (argc >= 3)
+		split = ft_split(argv[1], argv[2]);
+	else
+		split = ft_split(",,,,,Hello,World,,,,,,I,Dit,It,,,,,,", ",");
+	if (!split)
 		return (0);
-	ft_fill_words(str, charset, output);
-	return (output);
+	i = 0;
+	while (split[i])
+	{
+		printf("[%d]: %s\n", i, split[i]);
+		i++;
+	}
+	return (0);
 }
